@@ -16,15 +16,15 @@ struct ContentView: View {
     
     let pages = [
     
-        OnBoardingage(title: "", description: "", image: "Mercury"),
-        OnBoardingage(title: "", description: "", image: "Venus"),
-        OnBoardingage(title: "", description: "", image: "Earth"),
-        OnBoardingage(title: "", description: "", image: "Mars"),
-        OnBoardingage(title: "", description: "", image: "Jupiter"),
-        OnBoardingage(title: "", description: "", image: "Saturn"),
-        OnBoardingage(title: "", description: "", image: "Uranus"),
-        OnBoardingage(title: "", description: "", image: "Neptune"),
-        OnBoardingage(title: "", description: "", image: "Pluto"),
+        OnBoardinPage(title: "", description: "", image: "Mercury"),
+        OnBoardingPage(title: "", description: "", image: "Venus"),
+        OnBoardinPage(title: "", description: "", image: "Earth"),
+        OnBoardinPage(title: "", description: "", image: "Mars"),
+        OnBoardinPage(title: "", description: "", image: "Jupiter"),
+        OnBoardinPage(title: "", description: "", image: "Saturn"),
+        OnBoardinPage(title: "", description: "", image: "Uranus"),
+        OnBoardinPage(title: "", description: "", image: "Neptune"),
+        OnBoardinPage(title: "", description: "", image: "Pluto"),
     ]
     
     var body: some View {
@@ -34,11 +34,23 @@ struct ContentView: View {
         }
     }
     
-    struct OnBoardingage: Identifiable {
+    struct OnBoardinPage: Identifiable {
         var id = UUID()
         var title: String
         var description: String
         var image: String
+    }
+    
+    struct OnBoardinPageView: View {
+        
+        var page: OnBoardinPage
+        
+        var body: some View {
+            
+            VStack {
+                Text(page.title)
+            }
+        }
     }
 }
 
