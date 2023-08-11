@@ -15,9 +15,9 @@ struct ContentView: View {
     @State private var currentPageIndex = 0
     
     let pages = [
-    
+        
         OnBoardinPage(title: "", description: "", image: "Mercury"),
-        OnBoardingPage(title: "", description: "", image: "Venus"),
+        OnBoardinPage(title: "", description: "", image: "Venus"),
         OnBoardinPage(title: "", description: "", image: "Earth"),
         OnBoardinPage(title: "", description: "", image: "Mars"),
         OnBoardinPage(title: "", description: "", image: "Jupiter"),
@@ -29,8 +29,35 @@ struct ContentView: View {
     
     var body: some View {
         
-        VStack {
+        ZStack {
             
+            if isOnboardingDone{
+                
+            } else {
+                VStack {
+                    TabView(selection: $currentPageIndex) {
+                        ForEach(0..<pages.count) { index in
+                            OnBoardinPageView(page: pages[index])
+                                .tag(index)
+                        }
+                    }
+                    .tabViewStyle(PageTabViewStyle(indexDisplayMode: .never))
+                    
+                    Button(action: {
+                        if currentPageIndex < pages.count - 1 {
+                            withAnimation {
+                                currentPageIndex += 1
+                            }
+                        } else {
+                            withAnimation {
+                                isOnboardingDone = true
+                            }
+                        }
+                    }){
+                        
+                    }
+                }
+            }
         }
     }
     
@@ -49,6 +76,12 @@ struct ContentView: View {
             
             VStack {
                 Text(page.title)
+                
+                VStack {
+                    Image(page.image)
+                        .resizable()
+                        .frame(maxWidth: .infinity, maxHeight: .infinity)
+                }
             }
         }
     }
@@ -57,5 +90,6 @@ struct ContentView: View {
 struct ContentView_Previews: PreviewProvider {
     static var previews: some View {
         ContentView()
+            .preferredColorScheme(.dark)
     }
 }
