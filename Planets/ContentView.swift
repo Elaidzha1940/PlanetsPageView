@@ -19,7 +19,7 @@ struct ContentView: View {
         OnBoardinPage(title: "Mercury", description: "Mercury is the smallest planet in our solar system. It's a little bigger than Earth's Moon.", image: "Mercury"),
         OnBoardinPage(title: "Mars", description: "​Mars is the fourth planet from the Sun – a dusty, cold, desert world with a very thin atmosphere.", image: "Mars"),
         OnBoardinPage(title: "Earth", description: "Earth is the fifth-largest planet in the solar system. Its diameter is about 8,000 miles.", image: "Earth"),
-       
+        
     ]
     
     var body: some View {
@@ -57,6 +57,7 @@ struct ContentView: View {
                                 .padding()
                         }
                     }
+                    .padding()
                 }
             }
         }
@@ -76,24 +77,26 @@ struct ContentView: View {
         
         var body: some View {
             
-            VStack(alignment: .leading, spacing: 10) {
-                Text(page.title)
-                    .font(.system(size: 40, weight: .bold, design: .monospaced))
-                    .foregroundColor(.white)
-                    .cornerRadius(10)
-                
-                Text(page.description)
-                    .font(.system(size: 15, weight: .bold, design: .monospaced))
-                    .foregroundColor(.gray)
-
-                VStack {
-                    Image(page.image)
-                        .resizable()
-                        .frame(maxWidth: .infinity)
-                        .aspectRatio(contentMode: .fill)
+            
+            ZStack {
+                VStack(alignment: .leading, spacing: 10) {
+                    Text(page.title)
+                        .font(.system(size: 40, weight: .bold, design: .monospaced))
+                        .foregroundColor(.white)
+                    
+                    Text(page.description)
+                        .font(.system(size: 15, weight: .bold, design: .monospaced))
+                        .foregroundColor(.gray)
+                    
+                    VStack {
+                        Image(page.image)
+                            .resizable()
+                            .aspectRatio(contentMode: .fill)
+                            .cornerRadius(20)
+                    }
                 }
+                .padding()
             }
-            .padding()
         }
     }
     
