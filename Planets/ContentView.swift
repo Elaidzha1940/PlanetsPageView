@@ -16,23 +16,17 @@ struct ContentView: View {
     
     let pages = [
         
-        OnBoardinPage(title: "", description: "", image: "Mercury"),
-        OnBoardinPage(title: "", description: "", image: "Venus"),
-        OnBoardinPage(title: "", description: "", image: "Earth"),
-        OnBoardinPage(title: "", description: "", image: "Mars"),
-        OnBoardinPage(title: "", description: "", image: "Jupiter"),
-        OnBoardinPage(title: "", description: "", image: "Saturn"),
-        OnBoardinPage(title: "", description: "", image: "Uranus"),
-        OnBoardinPage(title: "", description: "", image: "Neptune"),
-        OnBoardinPage(title: "", description: "", image: "Pluto"),
+        OnBoardinPage(title: "Mercury", description: "", image: "Mercury"),
+        OnBoardinPage(title: "Mars", description: "", image: "Mars"),
+        OnBoardinPage(title: "Earth", description: "", image: "Earth"),
+       
     ]
     
     var body: some View {
         
         ZStack {
-            
+            Main()
             if isOnboardingDone{
-                
             } else {
                 VStack {
                     TabView(selection: $currentPageIndex) {
@@ -41,7 +35,7 @@ struct ContentView: View {
                                 .tag(index)
                         }
                     }
-                    .tabViewStyle(PageTabViewStyle(indexDisplayMode: .never))
+                    .tabViewStyle(PageTabViewStyle(indexDisplayMode: .always))
                     
                     Button(action: {
                         if currentPageIndex < pages.count - 1 {
@@ -54,8 +48,12 @@ struct ContentView: View {
                             }
                         }
                     }){
-                        
+                        Text(currentPageIndex < pages.count - 1 ? "Continue" : "Start")
+                            .font(.system(size: 20, weight: .bold, design: .monospaced))
+                            .foregroundColor(.white)
+                            .padding()
                     }
+                    //.padding()
                 }
             }
         }
@@ -75,15 +73,23 @@ struct ContentView: View {
         
         var body: some View {
             
-            VStack {
+            VStack(alignment: .leading, spacing: 20) {
                 Text(page.title)
-                
+                    .font(.system(size: 40, weight: .bold, design: .monospaced))
+                    .foregroundColor(.white)
                 VStack {
                     Image(page.image)
-//                        .resizable()
-//                        .aspectRatio(contentMode: .fill)
                 }
             }
+            .padding()
+        }
+    }
+    
+    struct Main: View {
+        var body: some View {
+            Text("Home")
+                .font(.system(size: 20, weight: .bold, design: .monospaced))
+                .foregroundColor(.white)
         }
     }
 }
