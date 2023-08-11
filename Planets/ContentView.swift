@@ -59,6 +59,7 @@ struct ContentView: View {
                 }
             }
         }
+        .edgesIgnoringSafeArea(.all)
     }
     
     struct OnBoardinPage: Identifiable {
@@ -79,8 +80,8 @@ struct ContentView: View {
                 
                 VStack {
                     Image(page.image)
-                        .resizable()
-                        .frame(maxWidth: .infinity, maxHeight: .infinity)
+//                        .resizable()
+//                        .aspectRatio(contentMode: .fill)
                 }
             }
         }
